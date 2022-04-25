@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "▶️ docker start": "docker-compose up -d --build",
+        "🛑 docker stop": "docker-compose down",
+        "docker terminal": "docker exec -it docker-php /bin/bash"
+    },
+    "dependencies": {
+        "bootstrap": "^5.1.3"
+    }
+}

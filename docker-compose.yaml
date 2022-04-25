@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    public_html:
+        container_name: docker-php
+        build: ./docker
+        restart: always
+        ports:
+            - 80:80
+        volumes:
+            - ./public_html/:/var/www/html/
