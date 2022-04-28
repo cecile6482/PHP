@@ -1,6 +1,6 @@
 <?php 
-session_start();
-
+session_start(); 
+if(isset($_SESSION['table'])) $table = $_SESSION['table'];
 ?>
 
 
@@ -15,31 +15,60 @@ session_start();
 
     <div class="container">
         <div class="row">
-            <div class="col-3">
-                <nav>
-                    <div class="d-grid gap-2">
-                    
-                            <button type="button" class="btn btn-outline-secondary btn-block">Home</button>
-                            <?php 
-                                if(!empty($_SESSION)){
-                                    include("./includes/ul.inc.html");
-                                    $table = $_SESSION["table"];
-                                }
-                            ?>
-                    </div>
-                </nav>
-            </div>
+            
+            <nav class="col-md-3 mt-3">
+                <!-- bouton "HOME" -->
+                <a role="button" class="btn btn-outline-secondary w-100" href="index.php">Home</a> 
+                <!-- Inclu la liste de navigation si le formulaire est rempli -->
+                <?php if (isset($table)) include_once './includes/ul.inc.php'; ?>    
+            </nav>
+            
 
-            <div class="col-9">         
-                <section>
-                    <button type="button" class="btn btn-primary">Ajouter des données</button>
+            <section class="col-md-9 mt-3">         
+                    <!-- Include pour le formulaire si on bascule sur ?add -->
+                    <?php if(isset($_GET['add'])) {
+                        include './includes/form.inc.html';
+                    } 
+                    elseif(isset($_POST['enregistrer'])) {
+                        $prenom = $_POST['user-prenom'];
+                        $nom = $_POST['user-nom'];
+                        $age = $_POST['user-age'];
+                        $taille = $_POST['user-taille'];
+                        $sex = $_POST['user-sex'];
+                        $table = array(          
+                            "first_name" => $prenom,
+                            "last_name"  =>  $nom,
+                            "age" => $age,
+                            "size" => $taille,
+                            "civility" => $sex,
+                        );
+
+                        $_SESSION["table"] = $table; 
+                        echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
+                        
+                        
+                    } elseif(isset($_GET["debugging"])) {
+                        echo '<h2>Débogage</h2>';
+                        echo "<p>===> Lecture du tableau à l'aide de la fonction print_r()</p>";
+                        print "<pre>";
+                        print_r($table);
+                        print "</pre>";
                     
-                    <?php  include 'includes/form.inc.html'; ?>
-                </section>
-            </div>
+                    } else if (isset($_GET['del'])) {
+                        unset ($_SESSION['table']);
+                        if (empty($_SESSION['table'])) {
+                            echo '<p class="alert-success text-center py-3"> Données suprimées</p>';
+                        }
+                    
+                    } else { 
+                        echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>'; 
+                    }    
+                    ?>
+            
+            </section>
         </div>   
     </div>
-
+    <br>
     <?php include("./includes/footer.inc.html"); ?> 
 </body>
 </html>
