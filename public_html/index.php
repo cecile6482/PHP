@@ -63,14 +63,20 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 echo '<h2 class="text-center">Concaténation</h2><br>';
                 
                                 echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
-                                if ($table["civility"] == "femme") { echo ("<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table["size"] . "m.</p><br>"); } else { echo ("<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table["size"] . "m.</p><br>");}
+                                
+                                if ($table["civility"] == "femme") { echo "<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>"; } else { echo "<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";}
+                                
                                 
 
-                                echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3><br><br>";
-
+                                echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
+                                $table['last_name'] = strtoupper($table['last_name']);
+                                if ($table["civility"] == "femme") { echo "<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>"; } else { echo "<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";}
+                                
 
                                 echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
-                                echo "<p>" . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . str_replace('.', ',', $table['size']) . "m.</p>";
+                                $table['size'] = str_replace('.' , ',', $table['size']);
+                                $table['last_name'] = strtoupper($table['last_name']);
+                                if ($table["civility"] == "femme") { echo "<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>"; } else { echo "<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";}
                 
                             
                             } else if (isset($_GET['loop'])) {
@@ -104,7 +110,9 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                     echo '<p class="alert-success text-center py-3"> Données suprimées</p>';
                                 }
                             
-                            } 
+                            }else { 
+                                echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>'; 
+                            }  
                         }
                         else { 
                             echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>'; 
