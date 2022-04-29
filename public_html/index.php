@@ -59,8 +59,8 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                         echo '<h2 class="text-center">Concaténation</h2><br>';
         
                         echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
-                        if ($sex == "femme") { echo ("Mme"); } else { echo ("Mr");}
-                        echo "<p>" . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table["size"] . "m.</p><br>";
+                        if ($table["civility"] == "femme") { echo ("<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table["size"] . "m.</p><br>"); } else { echo ("<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table["size"] . "m.</p><br>");}
+                        
 
                         echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3><br><br>";
 
