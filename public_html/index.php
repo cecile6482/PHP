@@ -75,8 +75,8 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                         echo "<p>===> Lecture du tableau à l'aide d'une boucle foreach</p><br>";
                         $table = $_SESSION['table'];
                         $i = 0;
-                        foreach ($table as $item => $value) {
-                            echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $item . '" et contient "' . $value . '"</div>';
+                        foreach ($table as $x => $value) {
+                            echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient "' . $value . '"</div>';
                             $i++;
                         }
                     
@@ -87,8 +87,8 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                         function readTable(){
                             $table = $_SESSION['table'];
                             $i = 0;
-                            foreach ($table as $item => $value) {
-                                echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $item . '" et contient "' . $value . '"</div>';
+                            foreach ($table as $x => $value) {
+                                echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient "' . $value . '"</div>';
                                 $i++;
                             }
                         }  
