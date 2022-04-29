@@ -76,7 +76,7 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                         $table = $_SESSION['table'];
                         $i = 0;
                         foreach ($table as $item => $value) {
-                            echo '<div>à la ligne n°' . $i . ' correspond à la clé "' . $item . '" et contient "' . $value . '"</div>';
+                            echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $item . '" et contient "' . $value . '"</div>';
                             $i++;
                         }
                     
@@ -88,7 +88,7 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                             $table = $_SESSION['table'];
                             $i = 0;
                             foreach ($table as $item => $value) {
-                                echo '<div>à la ligne n°' . $i . ' correspond à la clé "' . $item . '" et contient "' . $value . '"</div>';
+                                echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $item . '" et contient "' . $value . '"</div>';
                                 $i++;
                             }
                         }  
