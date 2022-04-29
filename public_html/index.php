@@ -64,19 +64,26 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                 
                                 echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
                                 
-                                if ($table["civility"] == "femme") { echo "<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>"; } else { echo "<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";}
-                                
+                                $civ = ($table['civility'] == "woman") ? "Mme " :  "Mr ";                               
+                                echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";
                                 
 
                                 echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
+                                
+                                $table['first_name'] = ucfirst ($table['first_name']);
                                 $table['last_name'] = strtoupper($table['last_name']);
-                                if ($table["civility"] == "femme") { echo "<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>"; } else { echo "<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";}
+                                $civ = ($table['civility'] == "woman") ? "Mme " :  "Mr ";                               
+                                echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";
+                                
                                 
 
                                 echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
+
                                 $table['size'] = str_replace('.' , ',', $table['size']);
+                                $table['first_name'] = ucfirst ($table['first_name']);
                                 $table['last_name'] = strtoupper($table['last_name']);
-                                if ($table["civility"] == "femme") { echo "<p>Mme " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>"; } else { echo "<p>Mr " . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";}
+                                $civ = ($table['civility'] == "woman") ? "Mme " :  "Mr ";                               
+                                echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";
                 
                             
                             } else if (isset($_GET['loop'])) {
