@@ -29,6 +29,10 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                     <?php if(isset($_GET['add'])) {
                         include './includes/form.inc.html';
                     } 
+                    elseif(isset($_GET['addmore'])) {
+                        include './includes/form2.inc.php';
+                    } 
+
                     elseif(isset($_POST['enregistrer'])) {
                         $prenom = $_POST['user-prenom'];
                         $nom = $_POST['user-nom'];
@@ -111,7 +115,8 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                             }  
                         }
                         else { 
-                            echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>'; 
+                            echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a> ';
+                            echo '<a role="button" class=" btn btn-secondary" href="index.php?addmore">Ajouter plus de données</a>'; 
                         } 
                     }   
                     ?>
