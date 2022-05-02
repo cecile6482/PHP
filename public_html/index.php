@@ -71,19 +71,15 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
                                 
                                 $table['first_name'] = ucfirst ($table['first_name']);
-                                $table['last_name'] = strtoupper($table['last_name']);
-                                $civ = ($table['civility'] == "woman") ? "Mme " :  "Mr ";                               
+                                $table['last_name'] = strtoupper($table['last_name']);                               
                                 echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";
                                 
-                                
+                                print_r($table);
 
                                 echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
 
-                                $table['size'] = str_replace('.' , ',', $table['size']);
-                                $table['first_name'] = ucfirst ($table['first_name']);
-                                $table['last_name'] = strtoupper($table['last_name']);
-                                $civ = ($table['civility'] == "woman") ? "Mme " :  "Mr ";                               
-                                echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";
+                                                             
+                                echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . str_replace('.' , ',', $table['size']) . "m.</p><br><br>";
                 
                             
                             } else if (isset($_GET['loop'])) {
