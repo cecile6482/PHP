@@ -27,16 +27,12 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
             <section class="col-md-9 mt-3">         
                     <!-- Include pour le formulaire si on bascule sur ?add -->
                     <?php 
-if(isset($_GET['add'])) {
-    include './includes/form.inc.html';
-} 
-
-                    if(isset($_GET['addmore'])) {
-                        include './includes/form2.inc.php';
+                    if(isset($_GET['add'])) {
+                        include './includes/form.inc.html';
                     } 
 
-                    elseif(isset($_GET['add'])) {
-                        include './includes/form.inc.html';
+                    elseif(isset($_GET['addmore'])) {
+                        include './includes/form2.inc.php';
                     } 
 
                     elseif(isset($_POST['enregistrer'])) {
@@ -55,6 +51,14 @@ if(isset($_GET['add'])) {
                         $react = $_POST['react'];
                         $color = $_POST['color'];
                         $dob = $_POST['dob'];
+                        $img=$_FILES['img'];
+                        $file_name = $_FILES['img']['name'];
+                        $file_type = $_FILES['img']['type'];
+                        $file_tmp = $_FILES['img']['tmp_name'];
+                        $file_error = $_FILES['img']['error'];
+                        $file_size = $_FILES['img']['size'];
+                        $file_ext=strtolower(end(explode('.',$_FILES['img']['name'])));
+                        $extensions= array("jpg","png");
                         $table = array(          
                             "first_name" => $prenom,
                             "last_name"  =>  $nom,
@@ -71,12 +75,40 @@ if(isset($_GET['add'])) {
                             "react" => $react,
                             "color" => $color,
                             "dob" => $dob,
+                            "img" => array(
+                                "name" => $file_name,
+                                "type" => $file_type,
+                                "tmp_name" => $file_tmp,
+                                "error" => $file_error,
+                                "size" => $file_size,
+                            )
+                            
+                            
                         );
-
+                        
                         $_SESSION["table"] = $table; 
                         echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
+
+                        if(empty($errors)==true){
+                            move_uploaded_file($file_tmp,"./uploaded/".$file_name);
+                            echo "Success";
+                         }else{
+                            print_r($errors);
+                         }
                         
-                       print_r($table);
+                        // if($file_size > 2097152) {
+                        //     $errors[]="La taille de l'image doit être inférieur à 2Mo";
+                        //  }
+
+                        // if(in_array($file_ext,$extensions)=== false){
+                        //     $errors[]="Extension non prise en charge";
+                        //  }
+
+                        //  if($img === false) {
+                        //     $errors[]="Aucun fichier n'a été téléchargé";
+                        //  }
+
+                
                     } 
 
                     else {
@@ -130,6 +162,7 @@ if(isset($_GET['add'])) {
                                     }
                                 }  
                                 readTable();   
+                                echo "<img src='./uploaded/$file_name'>";
                             
                             } elseif (isset($_GET['del'])) {
                                 unset ($_SESSION['table']);
@@ -139,11 +172,12 @@ if(isset($_GET['add'])) {
                             
                             }else { 
                                 echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a>'; 
+                                echo '<a role="button" class=" btn btn-secondary ms-2" href="index.php?addmore">Ajouter plus de données</a>'; 
                             }  
                         }
                         else { 
                             echo '<a role="button" class=" btn btn-primary" href="index.php?add">Ajouter des données</a> ';
-                            echo '<a role="button" class=" btn btn-secondary" href="index.php?addmore">Ajouter plus de données</a>'; 
+                            echo '<a role="button" class=" btn btn-secondary ms-2" href="index.php?addmore">Ajouter plus de données</a>'; 
                         } 
                     }   
                     ?>
