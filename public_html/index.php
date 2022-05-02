@@ -26,11 +26,17 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
 
             <section class="col-md-9 mt-3">         
                     <!-- Include pour le formulaire si on bascule sur ?add -->
-                    <?php if(isset($_GET['add'])) {
-                        include './includes/form.inc.html';
-                    } 
-                    elseif(isset($_GET['addmore'])) {
+                    <?php 
+if(isset($_GET['add'])) {
+    include './includes/form.inc.html';
+} 
+
+                    if(isset($_GET['addmore'])) {
                         include './includes/form2.inc.php';
+                    } 
+
+                    elseif(isset($_GET['add'])) {
+                        include './includes/form.inc.html';
                     } 
 
                     elseif(isset($_POST['enregistrer'])) {
@@ -39,19 +45,40 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                         $age = $_POST['user-age'];
                         $taille = $_POST['user-taille'];
                         $sex = $_POST['user-sex'];
+                        $html = $_POST['html'];
+                        $css = $_POST['css'];
+                        $javascript = $_POST['javascript'];
+                        $php = $_POST['php'];
+                        $mysql = $_POST['mysql'];
+                        $bootstrap = $_POST['bootstrap'];
+                        $symfony = $_POST['symfony'];
+                        $react = $_POST['react'];
+                        $color = $_POST['color'];
+                        $dob = $_POST['dob'];
                         $table = array(          
                             "first_name" => $prenom,
                             "last_name"  =>  $nom,
                             "age" => $age,
                             "size" => $taille,
                             "civility" => $sex,
+                            "html" => $html,
+                            "css" => $css,
+                            "javascript" => $javascript,
+                            "php" => $php,
+                            "mysql" => $mysql,
+                            "bootstrap" => $bootstrap,
+                            "symfony" => $symfony,
+                            "react" => $react,
+                            "color" => $color,
+                            "dob" => $dob,
                         );
 
                         $_SESSION["table"] = $table; 
                         echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
                         
-                       
+                       print_r($table);
                     } 
+
                     else {
                         if (isset($table)) {
 

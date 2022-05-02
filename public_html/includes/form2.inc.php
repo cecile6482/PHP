@@ -1,7 +1,9 @@
 <h1 class="text-center">Ajouter plus de données</h1>
+<form action="index.php" method="POST" enctype="multipart/form-data">
 <div class="container">
         <div class="row">
-    <form class="card col-md-7 mx-auto my-1" action="index.php" method="POST">
+           
+    <div class="card col-md-7 mx-auto my-1">
         <div class="form-floating mx-2 my-1">
             <input type="text" class="form-control" id="prenom" name="user-prenom" placeholder="Prénom" required>
             <label for="floatingInput">Prénom</label>
@@ -42,56 +44,56 @@
             </div>
             </div>
             <br>
-    </form>
+    </div>
 
-    <form class="card col-md-4 mx-auto my-1" action="index.php" method="POST">
+    <div class="card col-md-4 mx-auto my-1">
     <p class="mb-0">Connaissances</p>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="html" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="html" value="html5" id="flexCheckDefault">
     <label class="form-check-label" for="flexCheckDefault">
         HTML
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="css" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="css" value="css3" id="flexCheck" >
     <label class="form-check-label" for="flexCheck">
         CSS
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="js" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="javascript" value="javascript" id="flexCheckDefault">
     <label class="form-check-label" for="flexCheckDefault">
         JavaScript
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="php" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="php" value="php" id="flexCheck" >
     <label class="form-check-label" for="flexCheck">
         PHP
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="sql" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="mysql" value="mysql" id="flexCheckDefault">
     <label class="form-check-label" for="flexCheckDefault">
         MySQL
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="boot" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="bootstrap" value="bootstrap" id="flexCheck" >
     <label class="form-check-label" for="flexCheck">
         Bootstrap
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="react" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="symfony" value="symfony" id="flexCheckDefault">
     <label class="form-check-label" for="flexCheckDefault">
-        React
+        Symfony
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="sym" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="react" value="react" id="flexCheck" >
     <label class="form-check-label" for="flexCheck">
-        Symfony
+        React
     </label>
     </div>
 
@@ -103,19 +105,23 @@
 
     <div>
     <p class="mt-3 mb-0">Date de naissance</p>
-    <input type="date" name="born" id="date" placeholder="dd-mm-yyyy" value="">
+    <input type="date" name="dob" id="dob" placeholder="dd-mm-yyyy" value="">
     <label for="date"></label>
-    </div>
-</form>
-
-<form class="card col-11 mx-auto my-1" action="index.php" method="POST">
-    <div>
-        <p class="mt-3 mb-0">Joindre une image (jpg ou png)</p>
-        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-        <label for="avatar"></label>
-    </div>
-</form>
     </div>
 </div>
 
+<div class="card col-11 mx-auto my-1">
+    <div>
+        <p class="mt-3 mb-0">Joindre une image (jpg ou png)</p>
+        <input type="file" id="img" name="img" accept="image/png, image/jpeg">
+        
+    </div>
+    
+</div>
 <button name="enregistrer" type="submit" class="btn btn-primary float-end">Enregistrer les données</button>
+    
+    </div>
+</div>
+</form>
+
+
