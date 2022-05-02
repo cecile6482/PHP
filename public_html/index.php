@@ -63,22 +63,15 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 echo '<h2 class="text-center">Concaténation</h2><br>';
                 
                                 echo "<h3 class='fs-5'>===> Construction d'une phrase avec le contenu du tableau :</h3>";
-                                
                                 $civ = ($table['civility'] == "woman") ? "Mme " :  "Mr ";                               
                                 echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";
-                                
 
                                 echo "<h3 class='fs-5'>===> Construction d'une phrase après MAJ du tableau :</h3>";
-                                
                                 $table['first_name'] = ucfirst ($table['first_name']);
                                 $table['last_name'] = strtoupper($table['last_name']);                               
                                 echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . $table['size'] . "m.</p><br><br>";
-                                
-                                print_r($table);
 
-                                echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";
-
-                                                             
+                                echo "<h3 class='fs-5'>===> Affichage d'une virgule à la place du point pour la taille :</h3>";                           
                                 echo "<p> ". $civ . $table["first_name"] . " " . $table["last_name"] . " <br>J'ai " . $table["age"] . " ans et je mesure " . str_replace('.' , ',', $table['size']) . "m.</p><br><br>";
                 
                             
