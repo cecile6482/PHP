@@ -98,7 +98,7 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                            $errors= "<p class='alert-danger'>Aucun fichier n'a été téléchargé</p>";
                         }
 
-                        if(empty($errors)==true){
+                        if(empty($errors)){
                             move_uploaded_file($file_tmp,"./uploaded/".$file_name);
                             $table = array_filter($table_all);
                             $_SESSION['table'] = $table;
