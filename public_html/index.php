@@ -59,7 +59,7 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                         $file_size = $_FILES['img']['size'];
                         $file_ext=strtolower(end(explode('.',$_FILES['img']['name'])));
                         $extensions= array("jpg","png");
-                        $table = array(          
+                        $table_all = array(          
                             "first_name" => $prenom,
                             "last_name"  =>  $nom,
                             "age" => $age,
@@ -94,12 +94,13 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                             $errors = "<p class='alert-danger'>Extension $file_type non prise en charge</p>";
                          }
 
-                        //  if("UPLOAD_ERR_NO_FILE") {
-                        //     $errors= "<p class='alert-danger'>Aucun fichier n'a été téléchargé</p>";
-                        //  }
+                        if(empty($file_tmp)) {
+                           $errors= "<p class='alert-danger'>Aucun fichier n'a été téléchargé</p>";
+                        }
 
                         if(empty($errors)==true){
                             move_uploaded_file($file_tmp,"./uploaded/".$file_name);
+                            $table = array_filter($table_all);
                             $_SESSION['table'] = $table;
                             echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
                         }
@@ -144,16 +145,14 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 $table = $_SESSION['table'];
                                 $i = 0;
                                 foreach ($table as $x => $value) {
-                                    if (isset($value)) {
+                                    if ($x == 'img') {
+                                    unset($value);
+                                    echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient</div>';
+                                    echo "<img class='w-100' src='./uploaded/".$table['img']['name']."'>"; 
+                                    } else {
                                     echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient "' . $value . '"</div>';
                                     $i++;
-                                    } 
-
-                                    if ($x == 'img') {
-                                    //how to remove value ? 
-                                    echo "<img class='w-100' src='./uploaded/".$table['img']['name']."'>"; 
                                     }
-                                    
                                 }
                             
                             } else if (isset($_GET['function'])){     
@@ -165,14 +164,13 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                     $i = 0;
                                     
                                     foreach ($table as $x => $value) {
-                                        if (isset($value)) {
+                                        if ($x == 'img') {
+                                        unset($value);
+                                        echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient</div>';
+                                        echo "<img class='w-100' src='./uploaded/".$table['img']['name']."'>"; 
+                                        } else {
                                         echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient "' . $value . '"</div>';
                                         $i++;
-                                        }
-
-                                        if ($x == 'img') {
-                                        // unset($value); ? 
-                                        echo "<img class='w-100' src='./uploaded/".$table['img']['name']."'>"; 
                                         }
                                     }
                                     
