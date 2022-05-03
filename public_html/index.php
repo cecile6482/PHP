@@ -182,6 +182,8 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 
                             } elseif (isset($_GET['del'])) {
                                 unset ($_SESSION['table']);
+                                $pic = "./uploaded/".$table['img']['name'];
+                                unlink($pic);
                                 if (empty($_SESSION['table'])) {
                                     echo '<p class="alert-success text-center py-3"> Données suprimées</p>';
                                 }
