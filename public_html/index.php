@@ -83,30 +83,31 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 "size" => $file_size,
                             )
                             
-                            
                         );
-
+                        $errors= array();
+                        
                         if($file_size > 2097152) {
-                            $errors[]="La taille de l'image doit être inférieur à 2Mo";
+                            $errors = "<p class='alert-danger'>La taille de l'image doit être inférieur à 2Mo</p>";
                          }
 
                         if(in_array($file_ext,$extensions)=== false){
-                            $errors[]="Extension non prise en charge";
+                            $errors = "<p class='alert-danger'>Extension $file_type non prise en charge</p>";
                          }
 
-                         if($img === false) {
-                            $errors[]="Aucun fichier n'a été téléchargé";
-                         }
+                        //  if("UPLOAD_ERR_NO_FILE") {
+                        //     $errors= "<p class='alert-danger'>Aucun fichier n'a été téléchargé</p>";
+                        //  }
 
                         if(empty($errors)==true){
                             move_uploaded_file($file_tmp,"./uploaded/".$file_name);
-                         }else{
+                            $_SESSION['table'] = $table;
+                            echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
+                        }
+                          
+                        else{
                             print_r($errors);
-                         }
+                        }
 
-                         $_SESSION["table"] = $table; 
-                        echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
-                        
                     } 
 
                     else {
@@ -143,8 +144,16 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 $table = $_SESSION['table'];
                                 $i = 0;
                                 foreach ($table as $x => $value) {
+                                    if (isset($value)) {
                                     echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient "' . $value . '"</div>';
                                     $i++;
+                                    } 
+
+                                    if ($x == 'img') {
+                                    //how to remove value ? 
+                                    echo "<img class='w-100' src='./uploaded/".$table['img']['name']."'>"; 
+                                    }
+                                    
                                 }
                             
                             } else if (isset($_GET['function'])){     
@@ -154,14 +163,25 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                                 function readTable(){
                                     $table = $_SESSION['table'];
                                     $i = 0;
+                                    
                                     foreach ($table as $x => $value) {
+                                        if (isset($value)) {
                                         echo '<div>à la ligne n°' . $i . ' correspond la clé "' . $x . '" et contient "' . $value . '"</div>';
                                         $i++;
+                                        }
+
+                                        if ($x == 'img') {
+                                        // unset($value); ? 
+                                        echo "<img class='w-100' src='./uploaded/".$table['img']['name']."'>"; 
+                                        }
                                     }
+                                    
                                 }  
                                 readTable();   
-                                echo "<img src='./uploaded/$file_name'>";
-                            
+                                
+                                    
+
+                                
                             } elseif (isset($_GET['del'])) {
                                 unset ($_SESSION['table']);
                                 if (empty($_SESSION['table'])) {
