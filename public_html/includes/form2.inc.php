@@ -49,77 +49,78 @@
     <div class="card col-md-4 mx-auto my-1">
     <p class="mb-0">Connaissances</p>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="html" value="html5" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="html" value="html5">
     <label class="form-check-label" for="flexCheckDefault">
         HTML
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="css" value="css3" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="css" value="css3">
     <label class="form-check-label" for="flexCheck">
         CSS
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="javascript" value="javascript" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="javascript" value="javascript">
     <label class="form-check-label" for="flexCheckDefault">
         JavaScript
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="php" value="php" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="php" value="php">
     <label class="form-check-label" for="flexCheck">
         PHP
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="mysql" value="mysql" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="mysql" value="mysql">
     <label class="form-check-label" for="flexCheckDefault">
         MySQL
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="bootstrap" value="bootstrap" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="bootstrap" value="bootstrap">
     <label class="form-check-label" for="flexCheck">
         Bootstrap
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="symfony" value="symfony" id="flexCheckDefault">
+    <input class="form-check-input" type="checkbox" name="symfony" value="symfony">
     <label class="form-check-label" for="flexCheckDefault">
         Symfony
     </label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="react" value="react" id="flexCheck" >
+    <input class="form-check-input" type="checkbox" name="react" value="react">
     <label class="form-check-label" for="flexCheck">
         React
     </label>
     </div>
 
     <div>
-    <p class="mt-3 mb-0">Couleur préférée</p>
-        <input type="color" id="color" name="color" value="#000">
-        <label for="color"></label>
+    <label class="mt-3 mb-0" for="color">Couleur préférée</label><br>
+    <input type="color" id="color" name="color" value="#000" required>
+        
     </div>
 
     <div>
-    <p class="mt-3 mb-0">Date de naissance</p>
-    <input type="date" name="dob" id="dob" placeholder="dd-mm-yyyy" value="">
-    <label for="date"></label>
+    <label for="date" class="mt-3 mb-0">Date de naissance</label><br>
+    <input type="date" name="dob" id="dob" placeholder="dd-mm-yyyy" value="" required>
     </div>
 </div>
 
 <div class="card col-11 mx-auto my-1">
     <div>
-        <p class="mt-3 mb-0">Joindre une image (jpg ou png)</p>
-        <input type="file" id="img" name="img" accept="image/png, image/jpeg">
+        <label for="img" class="mt-3 mb-0">Joindre une image (jpg ou png)</label>
+        <input class="form-control" type="file" id="img" name="img">  
+        <!-- accept="image/png, image/jpeg" -->
         
     </div>
     
 </div>
+<div>
 <button name="enregistrer" type="submit" class="btn btn-primary float-end">Enregistrer les données</button>
-    
+</div>
     </div>
 </div>
 </form>

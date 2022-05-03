@@ -85,30 +85,28 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                             
                             
                         );
-                        
-                        $_SESSION["table"] = $table; 
-                        echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
+
+                        if($file_size > 2097152) {
+                            $errors[]="La taille de l'image doit être inférieur à 2Mo";
+                         }
+
+                        if(in_array($file_ext,$extensions)=== false){
+                            $errors[]="Extension non prise en charge";
+                         }
+
+                         if($img === false) {
+                            $errors[]="Aucun fichier n'a été téléchargé";
+                         }
 
                         if(empty($errors)==true){
                             move_uploaded_file($file_tmp,"./uploaded/".$file_name);
-                            echo "Success";
                          }else{
                             print_r($errors);
                          }
+
+                         $_SESSION["table"] = $table; 
+                        echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
                         
-                        // if($file_size > 2097152) {
-                        //     $errors[]="La taille de l'image doit être inférieur à 2Mo";
-                        //  }
-
-                        // if(in_array($file_ext,$extensions)=== false){
-                        //     $errors[]="Extension non prise en charge";
-                        //  }
-
-                        //  if($img === false) {
-                        //     $errors[]="Aucun fichier n'a été téléchargé";
-                        //  }
-
-                
                     } 
 
                     else {
