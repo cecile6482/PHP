@@ -85,35 +85,38 @@ if(isset($_SESSION['table'])) $table = $_SESSION['table'];
                             
                         );
                         $errors= array();
-                        
-                        if(isset($img)){
-                            if($file_size > 2097152) {
-                                $errors = "<p class='alert-danger'>La taille de l'image doit être inférieur à 2Mo</p>";
-                             }
 
-                            if(in_array($file_ext,$extensions)=== false){
-                                $errors = "<p class='alert-danger'>Extension $file_type non prise en charge</p>";
-                             }
-
-                            if(empty($file_tmp)) {
-                               $errors= "<p class='alert-danger'>Aucun fichier n'a été téléchargé</p>";
-                            }
-
-                            if(empty($errors)){
-                                move_uploaded_file($file_tmp,"./uploaded/".$file_name);
-                                $table = array_filter($table_all);
-                                $_SESSION['table'] = $table;
-                                echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
-                            }
-
-                            else{
-                                print_r($errors);
-                            }
-                        } else {
+                        if(isset($img) && $file_error == 0) {
+                            move_uploaded_file($file_tmp,"./uploaded/".$file_name);
                             $table = array_filter($table_all);
                             $_SESSION['table'] = $table;
                             echo '<p class="alert-success text-center py-3"> Données sauvegardées</p>';
                         }
+
+                        elseif(isset($file_error)) {
+                            if ($file_error == 4) {
+                                echo "<p class='alert-danger text-center py-3'>Aucun fichier n'a été téléchargé</p>";
+                                unset($_SESSION['table']);
+                            }
+
+                            if($file_error == 1) {
+                                echo "<p class='alert-danger text-center py-3'>La taille de l'image doit être inférieur à 2Mo</p>";
+                                unset($_SESSION['table']);
+                            }
+
+                            if($file_error == 2 || $file_error == 3 || $file_error == 6 || $file_error == 7) {
+                                echo "<p class='alert-danger text-center py-3'>erreur: '.$file_error.' </p>";
+                                unset($_SESSION['table']);
+                            }
+
+                            if(isset($table) && (in_array($file_ext,$extensions) == false)){
+                                echo "<p class='alert-danger text-center py-3'>Extension $file_type non prise en charge</p>";
+                                unset($_SESSION['table']);
+                            }
+
+                        }
+
+                        
                     } 
 
                     else {
